@@ -8,7 +8,7 @@ import { fileURLToPath } from "url";
 import { verificarLocalhost } from "./middleware/verificarlocalhost.js";
 
 const corsOptions = {
-  origin: "*", // Permite todas las solicitudes
+  origin: "*",
   optionsSuccessStatus: 200,
 };
 
