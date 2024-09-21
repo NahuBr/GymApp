@@ -1,0 +1,36 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.login-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 100%;
+    max-width: 500px;
+    /* Aumentar el ancho máximo */
+    padding: 30px;
+    /* Aumentar padding */
+    border-radius: 15px;
+    /* Esquinas redondeadas */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 90%;
+        /* Ocupa el 90% del ancho en móviles */
+        font-size: 1.2em;
+        /* Aumentar el tamaño de fuente en móviles */
+    }
+
+    .card-title {
+        font-size: 1.5em;
+        /* Aumentar el tamaño del título */
+    }
+}

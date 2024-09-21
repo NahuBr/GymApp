@@ -506,7 +506,27 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n\r\n\r\n(async function obtenerDatos() {\r\n  try {\r\n    const respuesta = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(\"http://186.127.47.23:3000/rutina\");\r\n    const div = document.getElementById(\"div\");\r\n    div.innerHTML = \"GymAPP\";\r\n  } catch (error) {\r\n    const div = document.getElementById(\"div\");\r\n    div.innerHTML = error;\r\n    try {\r\n      const respuesta = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].get(\"http://192.168.0.244:3000/rutina\");\r\n      const div = document.getElementById(\"div\");\r\n      div.innerHTML = \"GymAPP\";\r\n    } catch (error) {\r\n      const div = document.getElementById(\"div\");\r\n      div.innerHTML = error;\r\n    }\r\n  }\r\n})();\r\n\n\n//# sourceURL=webpack://gymapp/./src/public/js/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _register_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./register.js */ \"./src/public/js/register.js\");\n/* harmony import */ var _login_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login.js */ \"./src/public/js/login.js\");\n\r\n\r\n\r\ndocument\r\n  .getElementById(\"loginForm\")\r\n  .addEventListener(\"submit\", function (event) {\r\n    event.preventDefault(); // Evita el envío del formulario\r\n    const email = document.getElementById(\"email\").value;\r\n    const password = document.getElementById(\"password\").value;\r\n    (0,_login_js__WEBPACK_IMPORTED_MODULE_1__.login)(email, password);\r\n  });\r\n\r\ndocument\r\n  .getElementById(\"registerForm\")\r\n  .addEventListener(\"submit\", function (event) {\r\n    event.preventDefault(); // Evita el envío del formulario\r\n    const username = document.getElementById(\"username\").value;\r\n    const regEmail = document.getElementById(\"regEmail\").value;\r\n    const regPassword = document.getElementById(\"regPassword\").value;\r\n    const rutinas = [];\r\n    (0,_register_js__WEBPACK_IMPORTED_MODULE_0__.register)(username, regEmail, regPassword, rutinas);\r\n  });\r\n\n\n//# sourceURL=webpack://gymapp/./src/public/js/index.js?");
+
+/***/ }),
+
+/***/ "./src/public/js/login.js":
+/*!********************************!*\
+  !*** ./src/public/js/login.js ***!
+  \********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   login: () => (/* binding */ login)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n\r\n\r\nasync function login(mail, password) {\r\n  try {\r\n    const response = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].post(\"http://192.168.0.244:3000/login\", {\r\n      mail: mail,\r\n      password: password,\r\n    });\r\n\r\n    if (response.status === 200) {\r\n      // Redirigir si el login es exitoso\r\n      const user = response.data.user;\r\n      localStorage.setItem(\"user\", JSON.stringify(user));\r\n      window.location.href = response.data.redirectUrl;\r\n    }\r\n  } catch (error) {\r\n    // Verificar el estado de la respuesta del error\r\n    if (error.response && error.response.status === 401) {\r\n      alert(\"Usuario o contraseña incorrectos\");\r\n    } else {\r\n      alert(\"Error en la solicitud: \" + (error.message || error));\r\n    }\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack://gymapp/./src/public/js/login.js?");
+
+/***/ }),
+
+/***/ "./src/public/js/register.js":
+/*!***********************************!*\
+  !*** ./src/public/js/register.js ***!
+  \***********************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   register: () => (/* binding */ register)\n/* harmony export */ });\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/lib/axios.js\");\n\r\n\r\n//186.127.47.23\r\n//192.168.0.244\r\n\r\nasync function register(nombre, mail, password, rutinas) {\r\n  try {\r\n    const response = await axios__WEBPACK_IMPORTED_MODULE_0__[\"default\"].post(\"http://192.168.0.244:3000/register\", {\r\n      nombre: nombre,\r\n      mail: mail,\r\n      password: password,\r\n      rutinas: rutinas,\r\n    });\r\n    if (response.status === 200) {\r\n      const user = response.data.newUser;\r\n      localStorage.setItem(\"user\", JSON.stringify(user));\r\n      window.location.href = response.data.redirectUrl;\r\n    }\r\n  } catch (error) {\r\n    if (error.response && error.response.status === 401) {\r\n      alert(\"Usuario o contraseña incorrectos\");\r\n    } else {\r\n      alert(\"Error en la solicitud: \" + (error.message || error));\r\n    }\r\n  }\r\n}\r\n\n\n//# sourceURL=webpack://gymapp/./src/public/js/register.js?");
 
 /***/ })
 

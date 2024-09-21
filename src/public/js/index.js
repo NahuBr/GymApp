@@ -1,20 +1,22 @@
-import axios from "axios";
+import { register } from "./register.js";
+import { login } from "./login.js";
 
-(async function obtenerDatos() {
-  try {
-    const respuesta = await axios.get("http://186.127.47.23:3000/rutina");
-    const div = document.getElementById("div");
-    div.innerHTML = "GymAPP";
-  } catch (error) {
-    const div = document.getElementById("div");
-    div.innerHTML = error;
-    try {
-      const respuesta = await axios.get("http://192.168.0.244:3000/rutina");
-      const div = document.getElementById("div");
-      div.innerHTML = "GymAPP";
-    } catch (error) {
-      const div = document.getElementById("div");
-      div.innerHTML = error;
-    }
-  }
-})();
+document
+  .getElementById("loginForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita el envío del formulario
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    login(email, password);
+  });
+
+document
+  .getElementById("registerForm")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita el envío del formulario
+    const username = document.getElementById("username").value;
+    const regEmail = document.getElementById("regEmail").value;
+    const regPassword = document.getElementById("regPassword").value;
+    const rutinas = [];
+    register(username, regEmail, regPassword, rutinas);
+  });

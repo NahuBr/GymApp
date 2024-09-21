@@ -6,6 +6,7 @@ import { router } from "./routes/main.js";
 import { rutinaRouter } from "./routes/rutinas.js";
 import { fileURLToPath } from "url";
 import { verificarLocalhost } from "./middleware/verificarlocalhost.js";
+import { userRouter } from "./routes/userRouter.js";
 
 const corsOptions = {
   origin: "*",
@@ -25,3 +26,4 @@ app.use(cors(corsOptions));
 app.use(router);
 
 app.use(rutinaRouter);
+app.use(userRouter);
