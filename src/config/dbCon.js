@@ -7,7 +7,6 @@ export const dbCon = async () => {
 
   const db = mongoose.connection;
 
-  // Evento para detectar si la conexión es exitosa
   db.on("connected", () => {
     console.log("Conectado a MongoDB correctamente");
   });
